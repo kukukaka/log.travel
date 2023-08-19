@@ -52,15 +52,7 @@ export default function AddTripEntry() {
     <div className='pt-16'>
       <h1 className='text-xl font-semibold pb-4'>Add event</h1>
       <form onSubmit={handleSubmit}>
-{/* 
-        <input
-          type="text"
-          name="type"
-          placeholder="Type"
-          value={formData.type}
-          onChange={handleChange}
-        /> */}
-        
+
         <div className='pb-6'>
             <label className=" text-sm font-medium leading-6 text-slate-300">
             Type of event
@@ -83,7 +75,7 @@ export default function AddTripEntry() {
             <div className="mt-2">
             <input
                 type="text"
-                name="type"
+                name="origin_name"
                 value={formData.origin_name}
                 onChange={handleChange}
                 className="pl-[8px] w-64 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
