@@ -32,14 +32,15 @@ export default function AddTripEntry() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          ...formData,
-          authorId: '',  // Adjust this as per your needs
+          ...formData
+          // authorId: '',  // Adjust this as per your needs
         }),
       });
 
       if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
+        const data = await response.json();
+        console.error(data);
+        throw new Error('Network response was not ok');      }
 
       alert('Entry added successfully!');
     } catch (error) {
