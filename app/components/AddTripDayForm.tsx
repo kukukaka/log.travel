@@ -1,15 +1,10 @@
 "use client";
 
 import React, { useState } from 'react';
+import { TripDayData } from '../utils/tripStorage';
 
 interface AddTripDayFormProps {
-  onAddTripDay: (tripDay: {
-    date: string;
-    accommodation: string;
-    location: string;
-    activities: string;
-    cost: number;
-  }) => void;
+  onAddTripDay: (tripDay: Omit<TripDayData, 'id'>) => void;
 }
 
 const AddTripDayForm: React.FC<AddTripDayFormProps> = ({ onAddTripDay }) => {
