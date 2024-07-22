@@ -6,21 +6,6 @@ import TripDay from '../../components/TripDay';
 import AddTripDayForm from '../../components/AddTripDayForm';
 import { Trip, TripDayData, getTrips, updateTrip, deleteTrip } from '../../utils/tripStorage';
 
-interface TripDayData {
-  id: number;
-  date: string;
-  accommodation: string;
-  location: string;
-  activities: string;
-  cost: number;
-}
-
-interface Trip {
-  id: string;
-  name: string;
-  days: TripDayData[];
-}
-
 export default function TripPage({ params }: { params: { id: string } }) {
   const [trip, setTrip] = useState<Trip | null>(null);
   const router = useRouter();
