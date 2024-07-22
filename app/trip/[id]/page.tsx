@@ -43,7 +43,7 @@ export default function TripPage({ params }: { params: { id: string } }) {
   };
 
   const handleDeleteTrip = () => {
-    if (confirm('Are you sure you want to delete this trip?')) {
+    if (trip && confirm('Are you sure you want to delete this trip?')) {
       deleteTrip(trip.id);
       router.push('/');
     }
