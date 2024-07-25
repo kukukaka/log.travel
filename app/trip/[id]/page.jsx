@@ -4,16 +4,16 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import TripDay from '../../components/TripDay';
 import AddTripDayForm from '../../components/AddTripDayForm';
-import { Trip, TripDayData, getTrips, updateTrip, deleteTrip } from '../../utils/tripStorage';
+import { getTrips, updateTrip, deleteTrip } from '../../utils/tripStorage';
 
-export default function TripPage({ params }: { params: { id: string } }) {
-  const [trip, setTrip] = useState<Trip | null>(null);
+export default function TripPage({ params }) {
+  const [trip, setTrip] = useState(null);
   const router = useRouter();
 
   useEffect(() => {
     const storedTrips = localStorage.getItem('trips');
     if (storedTrips) {
-      const trips: Trip[] = JSON.parse(storedTrips);
+      const trips = JSON.parse(storedTrips);
       const currentTrip = trips.find((t) => t.id === params.id);
       if (currentTrip) {
         setTrip(currentTrip);
@@ -25,20 +25,14 @@ export default function TripPage({ params }: { params: { id: string } }) {
     }
   }, [params.id, router]);
 
-  const addTripDay = (newTripDay: TripDayData) => {
+  const addTripDay = (newTripDay) => {
     if (trip) {
       const updatedTrip = {
         ...trip,
         days: [...trip.days, { ...newTripDay, id: Date.now() }],
       };
       setTrip(updatedTrip);
-
-      const storedTrips = localStorage.getItem('trips');
-      if (storedTrips) {
-        const trips: Trip[] = JSON.parse(storedTrips);
-        const updatedTrips = trips.map((t) => (t.id === trip.id ? updatedTrip : t));
-        localStorage.setItem('trips', JSON.stringify(updatedTrips));
-      }
+      updateTrip(updatedTrip);
     }
   };
 

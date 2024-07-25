@@ -1,20 +1,15 @@
 "use client";
 
 import React, { useState } from 'react';
-import { TripDayData } from '../utils/tripStorage';
 
-interface AddTripDayFormProps {
-  onAddTripDay: (tripDay: Omit<TripDayData, 'id'>) => void;
-}
-
-const AddTripDayForm: React.FC<AddTripDayFormProps> = ({ onAddTripDay }) => {
+const AddTripDayForm = ({ onAddTripDay }) => {
   const [date, setDate] = useState('');
   const [accommodation, setAccommodation] = useState('');
   const [location, setLocation] = useState('');
   const [activities, setActivities] = useState('');
   const [cost, setCost] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     onAddTripDay({
       date,

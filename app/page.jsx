@@ -3,10 +3,10 @@
 import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useRouter } from 'next/navigation';
-import { Trip, getTrips, addTrip } from './utils/tripStorage';
+import { getTrips, addTrip } from './utils/tripStorage';
 
 export default function Home() {
-  const [trips, setTrips] = useState<Trip[]>([]);
+  const [trips, setTrips] = useState([]);
   const [newTripName, setNewTripName] = useState('');
   const router = useRouter();
 
@@ -17,7 +17,7 @@ export default function Home() {
   const createNewTrip = () => {
     if (newTripName.trim() === '') return;
     const newTripId = uuidv4();
-    const newTrip: Trip = { id: newTripId, name: newTripName.trim(), days: [] };
+    const newTrip = { id: newTripId, name: newTripName.trim(), days: [] };
     addTrip(newTrip);
     setTrips([...trips, newTrip]);
     setNewTripName('');
